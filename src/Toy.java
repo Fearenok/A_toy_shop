@@ -1,36 +1,35 @@
 import java.util.Objects;
 
-public class Toy {
+public class Toy implements Comparable<Toy> {
 
     private int toyId;
-    private  toyTitle;
+    private String toyTitle;
     private int toyVictoryFrequency;
+
     public Toy(int toyId, String toyTitle, int toyVictoryFrequency) {
         this.toyId = toyId;
         this.toyTitle = toyTitle;
         this.toyVictoryFrequency = toyVictoryFrequency;
     }
+
     public int getToyId() {
         return toyId;
-    }
-
-    public void setToyId(int toyId) {
-        this.toyId = toyId;
     }
 
     public String getToyTitle() {
         return toyTitle;
     }
 
-    public void setToyTitle(String toyTitle) {
-        this.toyTitle = toyTitle;
+    public int getToyVictoryFrequency() {
+        return toyVictoryFrequency;
     }
 
-    public int getToyVictoryFrequency() {
-         toyVictoryFrequency;
-    }
     public void setToyVictoryFrequency(int toyVictoryFrequency) {
         this.toyVictoryFrequency = toyVictoryFrequency;
+    }
+
+    public String getInfo() {
+        return String.format("ID: %d, Title: %s", toyId, toyTitle);
     }
 
     @Override
@@ -40,8 +39,14 @@ public class Toy {
         Toy toy = (Toy) o;
         return toyTitle.equals(toy.toyTitle);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(toyTitle);
+    }
+
+    @Override
+    public int compareTo(Toy o) {
+        return Integer.compare(this.toyVictoryFrequency, o.toyVictoryFrequency);
     }
 }
